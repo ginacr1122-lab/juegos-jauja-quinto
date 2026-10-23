@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exploradores de Jauja | Juegos para 5.º de primaria</title>
+<style>
+:root{--ink:#203047;--blue:#176b87;--teal:#d9f3ee;--gold:#f7c85d;--cream:#fffaf0;--pink:#ffe5df;--green:#20755b;--muted:#637184;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:linear-gradient(180deg,#eaf7f7,#fffaf0 55%,#fff);line-height:1.5}
+header{background:linear-gradient(120deg,#155e75,#248b83);color:white;padding:28px 18px 24px;text-align:center}
+header .emoji{font-size:2.5rem}h1{margin:4px 0;font-size:clamp(1.8rem,5vw,3rem)}header p{max-width:700px;margin:8px auto 0}
+.wrap{max-width:1000px;margin:auto;padding:18px}
+.pill{display:inline-block;border-radius:99px;padding:5px 12px;background:#fff4cc;color:#594515;font-size:.85rem;font-weight:700}
+nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:18px auto}
+nav button,.btn{border:0;border-radius:12px;padding:11px 15px;background:var(--blue);color:#fff;font-weight:700;cursor:pointer;font-size:1rem}
+nav button{background:white;color:var(--blue);border:2px solid #c7e4e5}
+nav button.active,nav button:hover{background:var(--blue);color:white}
+.card{background:white;border:1px solid #d9e5e5;border-radius:22px;padding:clamp(16px,3vw,28px);box-shadow:0 8px 24px #2344550c;margin:16px 0}
+h2{margin-top:0;font-size:1.5rem}.intro{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.game-tile{border:2px solid #d7e9e7;border-radius:17px;padding:18px;background:#fbffff;cursor:pointer;text-align:left;color:var(--ink)}
+.game-tile:hover{border-color:var(--blue);transform:translateY(-1px)}
+.game-tile .big{font-size:2rem}.game-tile strong{display:block;font-size:1.05rem;margin:6px 0}
+.question{font-size:1.2rem;font-weight:750;margin:14px 0}
+.answers{display:grid;gap:10px}
+.answer{border:2px solid #d9e4e8;border-radius:13px;padding:12px 14px;background:#fff;text-align:left;font-size:1rem;cursor:pointer;color:var(--ink)}
+.answer:hover{border-color:var(--blue);background:#f3fbfc}
+.answer.correct{border-color:#26805f;background:#e4f8ec}.answer.wrong{border-color:#c65b47;background:#fff0eb}
+.feedback{padding:12px 14px;border-radius:12px;margin:12px 0;background:#f0f5f8}
+.feedback.good{background:#e4f8ec;color:#175b43}.feedback.try{background:#fff0eb;color:#873d2d}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.row .btn{margin-top:8px}
+.score{font-weight:800;color:var(--green)}.progress{height:9px;background:#e8eff1;border-radius:99px;overflow:hidden;margin:12px 0}.progress span{display:block;height:100%;background:#2d9b83;width:0;transition:width .2s}
+.matchrow{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:center;margin:10px 0}.matchrow label{font-weight:700}.matchrow select,.field{width:100%;padding:12px;border:2px solid #d9e4e8;border-radius:12px;background:white;font:inherit}
+.chips{display:flex;gap:8px;flex-wrap:wrap}.chip{padding:10px 12px;border-radius:12px;border:2px solid #d9e4e8;background:white;cursor:pointer}.chip.selected{background:#d9f3ee;border-color:#176b87}
+.result{font-size:1.15rem;font-weight:750}.hidden{display:none!important}
+footer{text-align:center;color:var(--muted);padding:24px 14px;font-size:.9rem}
+.small{font-size:.9rem;color:var(--muted)}.callout{border-left:5px solid var(--gold);padding:12px 15px;background:#fff8df;border-radius:8px}
+@media(max-width:520px){nav button{flex:1 1 44%}.matchrow{grid-template-columns:1fr}.card{border-radius:17px}}
+</style>
+</head>
+<body>
+<header>
+<div class="emoji">🏞️ 🦋 🎒</div>
+<span class="pill">MISIÓN EDUCATIVA · 5.º DE PRIMARIA</span>
+<h1>¡Exploradores de Jauja!</h1>
+<p>Descubre paisajes, tradiciones, sabores y oportunidades de emprendimiento de esta provincia de la región Junín. ¡Aprende jugando!</p>
+</header>
+<div class="wrap">
+<nav id="nav">
+<button class="active" data-page="home">🏠 Inicio</button>
+<button data-page="g1">🧭 Trivia</button><button data-page="g2">🌿 Cuida la laguna</button>
+<button data-page="g3">🎭 Tradiciones</button><button data-page="g4">🍲 Sabores</button>
+<button data-page="g5">🗺️ Ruta turística</button><button data-page="g6">💡 Emprende</button>
+</nav>
+<section id="home" class="page card">
+<h2>Tu aventura comienza aquí</h2>
+<p class="intro">Elige una misión. Lee cada pregunta, selecciona tu respuesta y comprueba cómo te fue. Puedes volver a jugar para mejorar tu puntaje.</p>
+<div class="grid">
+<button class="game-tile" data-open="g1"><span class="big">🧭</span><strong>1. Exploradores de Jauja</strong>Trivia de geografía y lugares.</button>
+<button class="game-tile" data-open="g2"><span class="big">🌿</span><strong>2. Misión Laguna de Paca</strong>Verdadero o falso sobre el cuidado ambiental.</button>
+<button class="game-tile" data-open="g3"><span class="big">🎭</span><strong>3. Detectives de tradiciones</strong>Relaciona tradición y descripción.</button>
+<button class="game-tile" data-open="g4"><span class="big">🍲</span><strong>4. El reto del sabor</strong>Adivina a partir de pistas.</button>
+<button class="game-tile" data-open="g5"><span class="big">🗺️</span><strong>5. Arma una ruta turística</strong>Ordena una visita responsable.</button>
+<button class="game-tile" data-open="g6"><span class="big">💡</span><strong>6. Emprendedores por Jauja</strong>Diseña una idea para visitantes.</button>
+</div>
+<div class="callout" style="margin-top:18px"><strong>Reto final:</strong> ¿Cómo podemos compartir la riqueza de Jauja y, al mismo tiempo, cuidar su cultura y su naturaleza?</div>
+</section>
+
+<section id="g1" class="page card hidden">
+<h2>🧭 Misión 1: Exploradores de Jauja</h2><p class="intro">Responde las cinco preguntas y suma puntos.</p>
+<div class="progress"><span id="p1"></span></div><div id="quiz1"></div><div id="feedback1" class="feedback hidden"></div>
+<div class="row"><button class="btn hidden" id="next1">Siguiente pregunta →</button><button class="btn hidden" id="restart1">Volver a jugar</button></div><p id="score1" class="score"></p>
+</section>
+
+<section id="g2" class="page card hidden">
+<h2>🌿 Misión 2: ¡Cuida la Laguna de Paca!</h2><p class="intro">Lee cada afirmación y decide si es verdadera o falsa.</p>
+<div class="progress"><span id="p2"></span></div><div id="quiz2"></div><div id="feedback2" class="feedback hidden"></div>
+<div class="row"><button class="btn hidden" id="next2">Siguiente afirmación →</button><button class="btn hidden" id="restart2">Volver a jugar</button></div><p id="score2" class="score"></p>
+</section>
+
+<section id="g3" class="page card hidden">
+<h2>🎭 Misión 3: Detectives de las tradiciones</h2><p class="intro">Relaciona cada expresión con la descripción que mejor corresponda. Luego comprueba.</p>
+<div id="match3"></div><button class="btn" id="check3">Comprobar relaciones</button><div id="feedback3" class="feedback hidden"></div><p id="score3" class="score"></p>
+</section>
+
+<section id="g4" class="page card hidden">
+<h2>🍲 Misión 4: El reto del sabor</h2><p class="intro">Lee las pistas y elige la respuesta que mejor encaja. Algunas preparaciones son compartidas por distintas zonas de Junín y de los Andes.</p>
+<div class="progress"><span id="p4"></span></div><div id="quiz4"></div><div id="feedback4" class="feedback hidden"></div>
+<div class="row"><button class="btn hidden" id="next4">Siguiente pista →</button><button class="btn hidden" id="restart4">Volver a jugar</button></div><p id="score4" class="score"></p>
+</section>
+
+<section id="g5" class="page card hidden">
+<h2>🗺️ Misión 5: Arma una ruta turística responsable</h2><p class="intro">Ordena estas acciones para planificar una visita con respeto por el lugar y sus habitantes. Selecciona el número de orden en cada menú.</p>
+<div id="route5"></div><button class="btn" id="check5">Comprobar mi ruta</button><div id="feedback5" class="feedback hidden"></div><p id="score5" class="score"></p>
+</section>
+
+<section id="g6" class="page card hidden">
+<h2>💡 Misión 6: Emprendedores por Jauja</h2><p class="intro">Una familia quiere ofrecer una experiencia para visitantes. Elige opciones que ayuden a crear una idea útil, responsable y posible.</p>
+<div id="venture6"></div><button class="btn" id="check6">Evaluar mi idea</button><div id="feedback6" class="feedback hidden"></div><p id="score6" class="score"></p>
+</section>
+<section class="card">
+<h2>🏅 Mi pasaporte de explorador</h2>
+<p>Cuando termines las misiones, conversa con tu equipo: ¿qué aprendiste de Jauja?, ¿qué lugar te gustaría conocer?, ¿qué idea ayudaría a los visitantes sin dañar el ambiente?</p>
+<p class="small">Este recurso es educativo. Antes de usar datos locales específicos en una exposición pública, verifica nombres, fechas y detalles culturales con fuentes locales confiables.</p>
+</section>
+</div>
+<footer>¡Gracias por explorar Jauja! · Recurso educativo para quinto grado de primaria</footer>
+<script>
+const pages=[...document.querySelectorAll('.page')];
+function showPage(id){if(!document.getElementById(id))id='home';pages.forEach(p=>p.classList.toggle('hidden',p.id!==id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));if(location.hash!=='#'+id)history.replaceState(null,'','#'+id);window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+document.querySelectorAll('[data-open]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.open)));
+window.addEventListener('hashchange',()=>showPage(location.hash.slice(1)||'home'));
+if(location.hash && document.getElementById(location.hash.slice(1))) showPage(location.hash.slice(1));
+const games={
+1:[
+{q:'¿En qué región del Perú se encuentra la provincia de Jauja?',a:['Junín','Piura','Loreto','Arequipa'],c:0,why:'¡Correcto! Jauja está en la región Junín, en la sierra central del Perú.'},
+{q:'¿Cuál de estos lugares naturales es conocido en los alrededores de Jauja?',a:['Laguna de Paca','Lago Titicaca','Cañón del Colca','Lomas de Lachay'],c:0,why:'La Laguna de Paca es un atractivo natural asociado a la provincia de Jauja.'},
+{q:'¿Qué actitud demuestra respeto cuando visitamos un lugar turístico?',a:['Dejar basura en el camino','Dañar las plantas','Seguir las indicaciones y cuidar el entorno','Hacer ruido para asustar a los animales'],c:2,why:'Cuidar el entorno permite que otras personas también disfruten del lugar.'},
+{q:'¿Qué nos ayuda a conocer mejor la cultura de una localidad?',a:['Escuchar a sus habitantes y aprender sus tradiciones','Inventar historias sobre sus costumbres','Burlarnos de sus celebraciones','Ignorar su historia'],c:0,why:'Las personas de la comunidad son importantes portadoras de conocimientos y tradiciones.'},
+{q:'¿Qué información sería útil en una guía para visitar Jauja?',a:['Solo el nombre del visitante','Lugares, recomendaciones de cuidado y datos verificados','Rumores sin comprobar','Una lista de basura que dejar'],c:1,why:'Una buena guía informa con claridad y promueve una visita segura y responsable.'}
+],
+2:[
+{q:'En una visita a la Laguna de Paca, debo llevarme mi basura y colocarla en un lugar adecuado.',c:true,why:'¡Sí! Reducir los residuos ayuda a cuidar el paisaje y a los seres vivos.'},
+{q:'Está bien alimentar a cualquier animal silvestre con cualquier comida.',c:false,why:'No. Alimentar a la fauna puede perjudicarla. Observa a distancia y sigue las indicaciones locales.'},
+{q:'Puedo arrancar plantas para llevarme un recuerdo del lugar.',c:false,why:'Es mejor tomar fotografías y dejar las plantas en su ambiente.'},
+{q:'Respetar las indicaciones y a las personas de la comunidad ayuda a tener una visita responsable.',c:true,why:'¡Correcto! El turismo responsable cuida tanto el ambiente como a la comunidad.'},
+{q:'Si veo basura en un espacio natural, puedo avisar a un adulto y ayudar de forma segura.',c:true,why:'¡Bien pensado! La seguridad es primero; puedes avisar y colaborar sin ponerte en riesgo.'}
+],
+4:[
+{q:'Pista: es una preparación andina que suele cocinarse bajo tierra con piedras calientes y puede incluir carnes, papas y otros productos.',a:['Pachamanca','Ceviche de pescado','Arroz chaufa','Suspiro a la limeña'],c:0,why:'La pachamanca es una preparación tradicional de los Andes y se disfruta en distintas zonas del Perú.'},
+{q:'Pista: es un alimento elaborado a partir de granos de maíz, muy presente en diversas cocinas andinas; puede prepararse de distintas maneras.',a:['Maíz o choclo','Aceituna','Cacao en barra','Alga marina'],c:0,why:'El maíz tiene gran importancia en la alimentación andina. Las preparaciones varían según la localidad.'},
+{q:'Pista: al presentar un plato tradicional a los visitantes, ¿qué conviene hacer?',a:['Decir ingredientes y preguntar por alergias','Afirmar que todos pueden comerlo','Ocultar qué ingredientes tiene','Dejarlo sin protección al aire libre'],c:0,why:'Informar sobre los ingredientes y cuidar la higiene hace más segura la experiencia.'},
+{q:'¿Cuál es una buena forma de aprender sobre la comida local?',a:['Preguntar con respeto a cocineros y familias de la comunidad','Copiar una receta inventada y decir que es antigua','Asegurar que todos los pueblos cocinan igual','No escuchar a quienes la preparan'],c:0,why:'Las familias y cocineros locales pueden compartir conocimientos y variantes de sus recetas.'}
+]};
+function setupQuiz(id,items,kind){
+let idx=0,score=0,answered=false;
+const root=document.getElementById('quiz'+id),fb=document.getElementById('feedback'+id),next=document.getElementById('next'+id),restart=document.getElementById('restart'+id),scoreEl=document.getElementById('score'+id),prog=document.getElementById('p'+id);
+function render(){answered=false;fb.className='feedback hidden';next.classList.add('hidden');restart.classList.add('hidden');scoreEl.textContent='Puntaje: '+score+' / '+items.length;prog.style.width=(idx/items.length*100)+'%';let it=items[idx];
+if(kind==='tf'){root.innerHTML=`<div class="small">Afirmación ${idx+1} de ${items.length}</div><div class="question">${it.q}</div><div class="answers"><button class="answer" data-val="true">✅ Verdadero</button><button class="answer" data-val="false">❌ Falso</button></div>`}
+else{root.innerHTML=`<div class="small">Pregunta ${idx+1} de ${items.length}</div><div class="question">${it.q}</div><div class="answers">${it.a.map((a,i)=>`<button class="answer" data-val="${i}">${String.fromCharCode(65+i)}. ${a}</button>`).join('')}</div>`}
+root.querySelectorAll('.answer').forEach(b=>b.addEventListener('click',()=>choose(b,it)));
+}
+function choose(btn,it){if(answered)return;answered=true;let val=btn.dataset.val;let ok=kind==='tf'?(val===String(it.c)):(Number(val)===it.c);if(ok)score++;root.querySelectorAll('.answer').forEach(b=>{b.disabled=true;let correct=kind==='tf'?b.dataset.val===String(it.c):Number(b.dataset.val)===it.c;if(correct)b.classList.add('correct')});if(!ok)btn.classList.add('wrong');fb.className='feedback '+(ok?'good':'try');fb.innerHTML=(ok?'🎉 <strong>¡Muy bien!</strong> ':'💪 <strong>¡Vamos aprendiendo!</strong> ')+it.why;next.classList.remove('hidden');next.textContent=idx===items.length-1?'Ver resultado':'Siguiente '+(kind==='tf'?'afirmación':'pregunta')+' →';scoreEl.textContent='Puntaje: '+score+' / '+items.length}
+next.addEventListener('click',()=>{if(idx<items.length-1){idx++;render()}else{prog.style.width='100%';root.innerHTML=`<div class="result">🏆 Terminaste la misión</div><p>Obtuviste ${score} de ${items.length} puntos.</p><p>${score===items.length?'¡Excelente! Dominas esta misión.':score>=Math.ceil(items.length*.6)?'¡Buen trabajo! Revisa las explicaciones y vuelve a intentarlo.':'¡Cada intento te enseña algo nuevo! Repasa y juega otra vez.'}</p>`;fb.className='feedback good';fb.textContent='Sigue explorando Jauja con curiosidad y respeto.';next.classList.add('hidden');restart.classList.remove('hidden');scoreEl.textContent='Resultado final: '+score+' / '+items.length}});
+restart.addEventListener('click',()=>{idx=0;score=0;render()});render();
+}
+setupQuiz(1,games[1],'mc');setupQuiz(2,games[2],'tf');setupQuiz(4,games[4],'mc');
+
+const pairs=[
+['Tunantada','Expresión de danza y música tradicional vinculada a celebraciones de Jauja y el valle del Mantaro.'],
+['Laguna de Paca','Atractivo natural conocido por su paisaje y su entorno acuático.'],
+['Plaza de Armas','Espacio público central de la ciudad, punto de encuentro para residentes y visitantes.'],
+['Artesanía local','Trabajo manual que puede expresar técnicas, materiales e identidad de una comunidad.']
+];
+const descs=[pairs[2][1],pairs[0][1],pairs[3][1],pairs[1][1]];
+const shuffled=descs.slice().sort(()=>Math.random()-.5);
+document.getElementById('match3').innerHTML=pairs.map((p,i)=>`<div class="matchrow"><label for="m${i}">${p[0]}</label><select id="m${i}"><option value="">Elige una descripción…</option>${shuffled.map((d,j)=>`<option value="${pairs.findIndex(x=>x[1]===d)}">${d}</option>`).join('')}</select></div>`).join('');
+document.getElementById('check3').addEventListener('click',()=>{let score=0;pairs.forEach((p,i)=>{let s=document.getElementById('m'+i);if(Number(s.value)===i&&s.value!=='')score++});let f=document.getElementById('feedback3');f.className='feedback '+(score===pairs.length?'good':'try');f.innerHTML=`${score===pairs.length?'🎉 ¡Todas las relaciones son correctas!':'Has acertado '+score+' de '+pairs.length+'. Revisa las descripciones y prueba de nuevo.'}<br>Recuerda: las expresiones culturales tienen historia y pueden variar; es importante aprender de fuentes y personas de la comunidad.`;document.getElementById('score3').textContent='Puntaje: '+score+' / '+pairs.length});
+
+const route=[
+['Consultar información confiable y revisar recomendaciones locales.',1],
+['Preparar una ruta y acordar cómo llegar de manera segura.',2],
+['Visitar con respeto, seguir indicaciones y no dejar residuos.',3],
+['Al volver, compartir lo aprendido y sugerir mejoras responsables.',4]
+];
+document.getElementById('route5').innerHTML=route.map((r,i)=>`<div class="matchrow"><label>${r[0]}</label><select id="r${i}"><option value="">Orden…</option>${[1,2,3,4].map(n=>`<option value="${n}">${n}</option>`).join('')}</select></div>`).join('');
+document.getElementById('check5').addEventListener('click',()=>{let vals=route.map((_,i)=>document.getElementById('r'+i).value);let unique=new Set(vals.filter(Boolean)).size;let score=route.reduce((s,r,i)=>s+(Number(vals[i])===r[1]?1:0),0);let f=document.getElementById('feedback5');f.className='feedback '+(score===4?'good':'try');f.innerHTML=score===4?'¡Ruta excelente! Primero investigas y planificas; después visitas responsablemente y compartes lo aprendido.':`Tu orden tiene ${score} de 4 acciones en la posición esperada. Pista: investiga y planifica antes de visitar; al final comparte lo aprendido. ${unique<vals.length?'Recuerda usar cada número una sola vez.':''}`;document.getElementById('score5').textContent='Puntaje: '+score+' / 4'});
+
+const ventureQs=[
+{title:'¿Qué ofrecerá tu emprendimiento?',opts:[['Una caminata guiada con información verificada y cuidado del entorno',2],['Vender recuerdos hechos con plantas arrancadas del lugar',0],['Una guía ilustrada de lugares y tradiciones, revisada con la comunidad',2]],note:'Elige una experiencia o producto útil, respetuoso y realista.'},
+{title:'¿A quién quieres ayudar?',opts:[['A familias visitantes que necesitan una guía clara',2],['A nadie en particular; no importa quién lo use',0],['A estudiantes que quieren conocer Jauja',2]],note:'Identificar al público ayuda a diseñar algo que de verdad necesite.'},
+{title:'¿Cómo cuidarás la cultura y la naturaleza?',opts:[['Consultar a personas locales, pedir permiso y reducir residuos',2],['Inventar datos para que la idea parezca más interesante',0],['Respetar las indicaciones y compartir información comprobada',2]],note:'La confianza se construye con respeto y datos correctos.'}
+];
+document.getElementById('venture6').innerHTML=ventureQs.map((q,i)=>`<div class="card" style="margin:12px 0;padding:16px"><div class="question">${i+1}. ${q.title}</div><div class="answers">${q.opts.map((o,j)=>`<label class="answer" style="display:block"><input type="radio" name="v${i}" value="${o[1]}" style="margin-right:8px"> ${o[0]}</label>`).join('')}</div><p class="small">${q.note}</p></div>`).join('');
+document.getElementById('check6').addEventListener('click',()=>{let total=0,done=0;ventureQs.forEach((q,i)=>{let sel=document.querySelector(`input[name="v${i}"]:checked`);if(sel){done++;total+=Number(sel.value)}});let f=document.getElementById('feedback6');f.className='feedback '+(done===3&&total>=5?'good':'try');if(done<3)f.innerHTML=`Has respondido ${done} de 3 retos. Completa los tres para evaluar tu idea.`;else f.innerHTML=`Tu idea obtuvo ${total} de 6 puntos. ${total>=5?'¡Buen plan! Es útil, cuida el entorno y considera a sus visitantes.':'Revisa tus elecciones: busca una idea útil, basada en información verificada y respetuosa de la comunidad.'} Ahora escribe en tu cuaderno el nombre de tu idea, a quién ayuda y qué necesitas para ponerla en práctica.`;document.getElementById('score6').textContent=done===3?'Puntaje de diseño: '+total+' / 6':'Reto pendiente'});
+</script>
+</body></html>
